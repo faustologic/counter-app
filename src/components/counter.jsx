@@ -19,9 +19,15 @@ class Counter extends Component {
   };
 
   render() {
+    const counterStyle = {
+      display: "flex",
+      margin: "5px",
+      padding: "5px",
+    };
+
     return (
       // With Reac.Frangement, we can avoid the other div tag on the Body
-      <React.Fragment>
+      <div style={counterStyle}>
         <span className={this.getBadgeClasses()}>{this.formatValue()}</span>
         <button
           onClick={() => this.handleIncrement({ id: 1 })} //We modified the statement to use an arrow function, and add a property object with an id.
@@ -29,7 +35,13 @@ class Counter extends Component {
         >
           Increment
         </button>
-      </React.Fragment>
+        <button
+          onClick={this.props.onDelete} // This is how we called a props method from a parent to a child
+          className="btn btn-danger btn-sm m-2"
+        >
+          Delete
+        </button>
+      </div>
     );
   }
 
