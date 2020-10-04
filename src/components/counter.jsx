@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    value: this.props.value,
+    value: this.props.counter.value,
   };
 
   // constructor() {
@@ -31,12 +31,12 @@ class Counter extends Component {
         <span className={this.getBadgeClasses()}>{this.formatValue()}</span>
         <button
           onClick={() => this.handleIncrement({ id: 1 })} //We modified the statement to use an arrow function, and add a property object with an id.
-          className="btn btn-secondary btn-sm"
+          className="btn btn-secondary btn-sm m-2"
         >
           Increment
         </button>
         <button
-          onClick={this.props.onDelete} // This is how we called a props method from a parent to a child
+          onClick={() => this.props.onDelete(this.props.counter.id)} // This is how we called a props method from a parent to a child
           className="btn btn-danger btn-sm m-2"
         >
           Delete
@@ -55,7 +55,7 @@ class Counter extends Component {
 
   getBadgeClasses() {
     // We create this method using refractor function on visual code crt+shift+R
-    let classes = "badge m-2 badge-";
+    let classes = "badge m-2 p-2 badge-";
     classes += this.state.value === 0 ? "warning" : "primary";
     return classes;
   }

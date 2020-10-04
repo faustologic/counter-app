@@ -13,20 +13,36 @@ class Counters extends Component {
     ],
   };
 
-  handleDelete = () => {
-    console.log("handle event called!");
+  handleDelete = (counterId) => {
+    //console.log("handle event called!", counterId);
+    const counters = this.state.counters.filter((c) => c.id !== counterId);
+    this.setState({ counters });
+  };
+
+  handleReset = () => {
+    // console.log("Reset the counters");
+    const counters = this.state.counters.map((c) => {
+      c.value = 0;
+      return c;
+    });
+    this.setState({ counters });
   };
 
   render() {
     return (
       <div>
+        <button
+          onClick={this.handleReset}
+          className="btn btn-primary btn-sm m-2"
+        >
+          Reset
+        </button>
         {this.state.counters.map((counter) => (
           <Counter
             // This are the counter props
             key={counter.id}
             onDelete={this.handleDelete}
-            value={counter.value}
-            id={counter.id}
+            counter={counter} // we simplify this props and use it as a prefix on counter component
           />
         ))}
       </div>
