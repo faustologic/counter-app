@@ -5,7 +5,13 @@ import Counter from "./counter";
 class Counters extends Component {
   render() {
     // Let's add a destructuring argument, to clean our code.
-    const { onReset, counters, onDelete, onIncrement } = this.props;
+    const {
+      onReset,
+      counters,
+      onDelete,
+      onIncrement,
+      onDecrement,
+    } = this.props;
 
     return (
       <div>
@@ -18,6 +24,7 @@ class Counters extends Component {
             key={counter.id}
             onDelete={onDelete}
             onIncrement={onIncrement}
+            onDecrement={onDecrement}
             counter={counter} // we simplify this props and use it as a prefix on counter component
           />
         ))}

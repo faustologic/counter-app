@@ -9,21 +9,32 @@ class Counter extends Component {
     };
     return (
       // With Reac.Frangement, we can avoid the other div tag on the Body
-      <div style={counterStyle}>
-        <span className={this.getBadgeClasses()}>{this.formatValue()}</span>
-        <button
-          onClick={() => this.props.onIncrement(this.props.counter)}
-          // We change the method statement to make all modifications on the parent component "Counters"
-          className="btn btn-secondary btn-sm m-2"
-        >
-          Increment
-        </button>
-        <button
-          onClick={() => this.props.onDelete(this.props.counter.id)} // This is how we called a props method from a parent to a child
-          className="btn btn-danger btn-sm m-2"
-        >
-          Delete
-        </button>
+      <div style={counterStyle} className="container">
+        <div className="row">
+          <div className="col-sm">
+            <span className={this.getBadgeClasses()}>{this.formatValue()}</span>
+            <button
+              onClick={() => this.props.onIncrement(this.props.counter)}
+              // We change the method statement to make all modifications on the parent component "Counters"
+              className="btn btn-secondary btn-sm m-2"
+            >
+              +
+            </button>
+            <button
+              onClick={() => this.props.onDecrement(this.props.counter)}
+              disabled={this.props.counter.value === 0}
+              className="btn btn-secondary btn-sm m2"
+            >
+              -
+            </button>
+            <button
+              onClick={() => this.props.onDelete(this.props.counter.id)} // This is how we called a props method from a parent to a child
+              className="btn btn-danger btn-sm m-2"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
